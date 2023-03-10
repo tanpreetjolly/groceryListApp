@@ -2,10 +2,9 @@ import * as React from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { CheckCircle } from "@mui/icons-material";
 import CancelIcon from "@mui/icons-material/Cancel";
-import { useState } from "react";
 
 const Item = ({ itemData, onToggleCheckbox, onDelete }) => {
-  const { id, text, checked } = itemData;
+  const { id, checked } = itemData;
   return (
     <div className="flex justify-between p-2 h-13 text-xl items-center">
       {checked ? (

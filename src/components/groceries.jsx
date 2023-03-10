@@ -21,7 +21,10 @@ const Groceries = () => {
     setGroceryItems(updatedItems);
   };
 
-  const deleteItem = () => {};
+  const deleteItem = (itemId) => {
+    let filteredItems = groceryItems.filter((item) => item.id !== itemId);
+    setGroceryItems(filteredItems);
+  };
 
   return (
     <div className="container outline outline-1 outline-blue-600 w-full mt-5 flex flex-col">
