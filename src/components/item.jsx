@@ -2,25 +2,22 @@ import * as React from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { CheckCircle } from "@mui/icons-material";
 import CancelIcon from "@mui/icons-material/Cancel";
+import { useState } from "react";
 
-const Item = ({ itemData, checked }) => {
-  const toggleCheckbox = (id) => {
-    itemData.forEach((item) => {
-      if (id === itemData.id) {
-        setGroceryItems(!groceryItems[id].checked);
-        console.log("toggle");
-      }
-    });
-  };
-
+const Item = ({ itemData, onToggleCheckbox, onDelete }) => {
+  const { id, text, checked } = itemData;
   return (
     <div className="flex justify-between p-2 h-13 text-xl items-center">
-      {itemData.checked ? (
-        <CheckCircle color="success" size="large" onClick={toggleCheckbox} />
+      {checked ? (
+        <CheckCircle
+          color="success"
+          size="large"
+          onClick={() => onToggleCheckbox(id)}
+        />
       ) : (
-        <CancelIcon color="primary" onClick={toggleCheckbox} />
+        <CancelIcon color="primary" onClick={() => onToggleCheckbox(id)} />
       )}
-      {itemData.checked ? (
+      {checked ? (
         <div className="bg-gray-200 w-4/5 text-center rounded-md h-9">
           {itemData.text}
         </div>
@@ -29,7 +26,7 @@ const Item = ({ itemData, checked }) => {
           {itemData.text}
         </div>
       )}
-      <DeleteIcon color="error" />
+      <DeleteIcon color="error" onClick={() => onDelete(id)} />
     </div>
   );
 };

@@ -10,12 +10,28 @@ const Groceries = () => {
     },
   ]);
 
+  const toggleCheckbox = (itemId) => {
+    let updatedItems = groceryItems.map((item) => {
+      if (item.id === itemId) {
+        return { ...item, checked: !item.checked };
+      } else {
+        return item;
+      }
+    });
+    setGroceryItems(updatedItems);
+  };
+
   const deleteItem = () => {};
 
   return (
     <div className="container outline outline-1 outline-blue-600 w-full mt-5 flex flex-col">
       {groceryItems.map((item) => (
-        <Item itemData={item} key={item.id} checked={item.checked} />
+        <Item
+          itemData={item}
+          key={item.id}
+          onToggleCheckbox={toggleCheckbox}
+          onDelete={deleteItem}
+        />
       ))}
     </div>
   );
