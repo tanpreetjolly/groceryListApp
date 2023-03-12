@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Item from "./item";
 import InputArea from "./input";
+import cart from "../img/cart.png";
 
 const Groceries = () => {
   const [inputValue, setInputValue] = useState("");
@@ -14,8 +15,8 @@ const Groceries = () => {
         text: inputValue.trim(),
         checked: true,
       };
-      setInputValue("");
       setGroceryItems((prevItems) => [...prevItems, newItem]);
+      setInputValue("");
     } else {
       alert("Please enter a non-empty value.");
     }
@@ -38,11 +39,23 @@ const Groceries = () => {
   };
 
   return (
-    <div className="groceries flex flex-col items-center justify-center">
-      <InputArea handleClick={addItem} handleInput={handleInput} />
+    <div className="groceries pt-2 flex flex-col w-full sm:w-4/5 justify-start gap-1 items-center overflow-y-scroll">
+      <InputArea
+        handleClick={addItem}
+        handleInput={handleInput}
+        value={inputValue}
+      />
       {groceryItems.length === 0 ? (
-        <div id="emptyList" className="text-2xl mt-2">
-          Empty List
+        <div
+          id="emptyList"
+          className="text-xl mt-16 sm:mt-12 lg:mt-8 flex flex-col items-center text-slate-800"
+        >
+          <img
+            src={cart}
+            alt="empty list"
+            className="block w-32 sm:w-40 lg:w-44 xl:w-48"
+          />
+          <p className="mt-2 lg:mt-0">The list is empty</p>
         </div>
       ) : (
         <div className="container w-full mt-5 flex flex-col">

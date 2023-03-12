@@ -7,11 +7,11 @@ const Item = ({ itemData, onToggleCheckbox, onDelete }) => {
   return (
     <div className="flex justify-center gap-1 p-2 h-13 text-xl items-center">
       {checked ? (
-        <div className="bg-gray-200 w-4/5 text-center rounded-md h-9">
+        <div className="w-4/5 text-center rounded-md h-9 border border-solid border-green-800 text-gray-900 bg-green-100">
           {itemData.text}
         </div>
       ) : (
-        <div className="bg-gray-200 w-4/5 text-center rounded-md h-9 line-through">
+        <div className="bg-red-100 w-4/5 text-center rounded-md h-9 line-through border border-solid border-red-800">
           {itemData.text}
         </div>
       )}

@@ -5,7 +5,7 @@ import Main from './components/main';
 
 function App() {
   return (
-    <div className="App min-h-screen flex items-center justify-center flex-col w-full">
+    <div className="App min-h-screen flex items-center bg-orange-100 justify-center flex-col w-full">
       <Header title="Grocery List" />
       <Main />
     </div>
