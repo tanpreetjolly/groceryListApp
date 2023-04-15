@@ -2,10 +2,32 @@ import { useState } from "react";
 import Item from "./item";
 import InputArea from "./input";
 import cart from "../img/cart.png";
+import { useEffect } from "react";
 
 const Groceries = () => {
   const [inputValue, setInputValue] = useState("");
   const [groceryItems, setGroceryItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const API_URL = "http://localhost:3500/items";
+
+  useEffect(() => {
+    const fetchItems = async () => {
+      try {
+        const response = await fetch(API_URL);
+        if (!response.ok) throw Error("Did not received response");
+        const listItems = await response.json();
+        setGroceryItems(listItems);
+        console.log(listItems);
+      } catch (err) {
+        console.log(err.stack);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    setTimeout(() => fetchItems(), 1500); // invoked after loading the page, added time to seem more practical
+  }, []);
 
   const addItem = () => {
     if (inputValue.trim() !== "") {
